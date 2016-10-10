@@ -8,14 +8,17 @@ import {
 	Alert
 } from 'react-native';
 
+import ProfileSummary from '../components/profile.summary.component';
 import ServiceComponent from './service.container';
+import ContactComponent from './contact.container';
 import HomeComponent from '../components/home.component';
 import Link from '../components/link.component';
 import {connect} from 'react-redux';
 
 const components = {
 	HomeComponent,
-	ServiceComponent
+	ServiceComponent,
+	ContactComponent
 };
 
 let moment = require('moment');
@@ -71,7 +74,7 @@ export default class DrawerComponent extends Component {
 					ref={'SCROLLER'}
 					automaticallyAdjustContentInsets={false}
 					scrollEventThrottle={200}>
-
+					<ProfileSummary {...this.props} />
 					{
 						this.props.drawer.list.map((item, idx) => {
 							return (
