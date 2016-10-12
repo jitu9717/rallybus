@@ -37,28 +37,27 @@ class NavContainer extends Component {
 			return false;
 		});
 
-		//const user = await fetchUserFromStorage();
-		const user = {};
+		const user = await fetchUserFromStorage();
 		if (user) {
 			console.log("REHYDRATE:", user);
 			//The user is logged in - Rehydrate state
-			//await this.props.dispatch(userLoginSuccess(user));
+			await this.props.dispatch(userLoginSuccess(user));
 			// await this.props.dispatch(fetchUserService());
-			
+
 			this.goToRoute({
 				replace: true,
-				name: 'home',
+				name: 'service',
 				component: HomeComponent,
-				title: 'HOME'
+				title: 'Home'
 			});
 		} else {
 			//Not logged in- Show the login view
 			this.goToRoute({
 				replace: true,
-				name: 'service',
+				name: 'login',
 				hideNavBar: true,
-				component: ServiceComponent,
-				title: 'Service'
+				component: LoginComponent,
+				title: 'Login'
 			});
 		}
 	}

@@ -33,6 +33,7 @@ class ServiceComponent extends Component {
       isReady: false,
       listData: ds.cloneWithRows(list || [])
     };
+      console.log("Props ",this.props);
 
 
   }

@@ -2,8 +2,8 @@ import * as types from '../actions/drawer.action';
 import AllowedFeatures from '../env/features';
 
 let initialList = [
-  { linkIcon: 'content-paste', primaryText: 'SERVICE', componentToShow: 'ServiceComponent', name: 'service'},
   { linkIcon: 'home', primaryText: 'HOME', componentToShow: 'HomeComponent', name: 'home'},
+  { linkIcon: 'content-paste', primaryText: 'SERVICE', componentToShow: 'ServiceComponent', name: 'service'},
   { linkIcon: 'contacts', primaryText: 'CONTACT', componentToShow: 'ContactComponent', name: 'contact'},
   { linkIcon: 'exit-to-app', primaryText: 'Logout', name: 'logout' }
 ];

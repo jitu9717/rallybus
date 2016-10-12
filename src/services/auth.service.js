@@ -1,7 +1,7 @@
 import {
 	AsyncStorage
 } from 'react-native';
-/*import {GoogleSignin} from 'react-native-google-signin';*/
+import {GoogleSignin} from 'react-native-google-signin';
 import API from '../services/api.manager';
 import EventService from '../services/events.service';
 
@@ -52,7 +52,6 @@ exports.logout = async function (callback) {
 	await exports.configure();
 	await exports.removeUserFromStorage();
 	await EventService.removeEventsFromStorage();
-	await TeamService.removeTeamFromStorage();
 	await exports.removeTokenFromStorage();
 	try {
 		return GoogleSignin.signOut()
@@ -96,29 +95,9 @@ exports.signIn = async function (callback) {
 	user = await exports.login();
 	if (user) {
 		console.log(user);
-		let authUser = await API.login({
-			payload: {
-				data: {
-					id: user.id,
-					type: 'token',
-					attributes: {
-						auth_code: user.serverAuthCode,
-						access_token: user.accessToken,
-						email: user.email,
-						name: user.name
-					}
-				}
-			}
-		});
 
-		console.log("====================================");
-		console.log(authUser);
-		console.log("====================================");
-		if (authUser) {
-			authUser.data.attributes.photo = user.photo;
-			await exports.writeUserToStorage(authUser);
-			return authUser;
-		}
+	await exports.writeUserToStorage(user);
+	return user;
 	}
 	return new Error("Unable to login");
 };

@@ -18,19 +18,19 @@ export default class ProfileSummaryComponent extends Component {
 		//TODO: this data would come via the props/store
 		let stats = [];
 
-		//const userState = this.props.user;
-		const user = "";
+		const userState = this.props.user;
+		const user = userState;
 
 		return (
 			<View style={styles.profileSummary}>
 				<View style={styles.imageWrap}>
 					<Image style={styles.image} resizeMode='cover' source={{ 
-						uri: 'https://www.gravatar.com/avatar/x?f=y&d=mm&s=300'
+						uri: user && user.info && user.info.photo || 'https://www.gravatar.com/avatar/x?f=y&d=mm&s=300'
 					}} />
 				</View>
 				<Text style={styles.userName}>
 				{
-					'Login'
+					user && user.info && user.info.name || 'Login'
 				}
 				</Text>
 

@@ -17,7 +17,7 @@ let common = {
 		}
 	},
 	google: {
-		clientId: '681345616712-lnndn8m04fsfg4v4ihcn6dook25cul8u.apps.googleusercontent.com'
+		clientId: '204576878451-islrpv87igisea6tdce0ag5mh8rnq367.apps.googleusercontent.com'
 	}
 };
 

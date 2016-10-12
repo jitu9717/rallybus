@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "204576878451",
+    "project_id": "rally-bus"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:204576878451:android:a8cb0b43c912131f",
+        "android_client_info": {
+          "package_name": "com.rallybus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "204576878451-6fvl0cmlm2npenudenvdh95t924sqh7j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rallybus",
+            "certificate_hash": "92FFFD084932A4DA59D348C112672D665403663B"
+          }
+        },
+        {
+          "client_id": "204576878451-islrpv87igisea6tdce0ag5mh8rnq367.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxda-SJZD6qiSdk3Ks7onAKihYvVyE2LU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
