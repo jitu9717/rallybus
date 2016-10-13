@@ -1,5 +1,5 @@
 import * as actions from './index';
-import { signIn, logout } from '../services/auth.service';
+import { signIn, logout, signInFacebook } from '../services/auth.service';
 import { fetchEvents} from '../services/events.service';
 import {
 	fetchServiceListFailure,
@@ -19,6 +19,35 @@ export function loginUser() {
 
 		try {
 			let user = await signIn();
+			console.log("Signin ",user);
+			if (user) {
+				dispatch(actions.userLoginSuccess(user));
+				return {
+					err: false,
+					user
+				};
+			}
+			console.log("SIGNIN: NO USER", user);
+			dispatch(actions.userLoginFailed());
+			return {
+				err: true
+			};
+		} catch (err) {
+			console.log("SIGNIN: ERROR", err);
+			dispatch(actions.userLoginFailed());
+			return {
+				err: true
+			};
+		}
+	}
+}
+
+export function loginUserFacebook(userinfo) {
+	return async (dispatch, getState) => {
+		dispatch(actions.initiateUserLogin());
+
+		try {
+			let user = await signInFacebook(userinfo);
 			if (user) {
 				dispatch(actions.userLoginSuccess(user));
 				return {

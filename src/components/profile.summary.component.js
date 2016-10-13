@@ -20,17 +20,16 @@ export default class ProfileSummaryComponent extends Component {
 
 		const userState = this.props.user;
 		const user = userState;
-
 		return (
 			<View style={styles.profileSummary}>
 				<View style={styles.imageWrap}>
 					<Image style={styles.image} resizeMode='cover' source={{ 
-						uri: user && user.info && user.info.photo || 'https://www.gravatar.com/avatar/x?f=y&d=mm&s=300'
+						uri: user && user.info && user.info.data && user.info.data.photo || 'https://www.gravatar.com/avatar/x?f=y&d=mm&s=300'
 					}} />
 				</View>
 				<Text style={styles.userName}>
 				{
-					user && user.info && user.info.name || 'Login'
+					user && user.info && user.info.data && user.info.data.name || 'Login'
 				}
 				</Text>
 

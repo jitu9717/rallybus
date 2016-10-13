@@ -10,13 +10,28 @@ import {
 
 import ServiceComponent from './../containers/service.container.js';
 import HomeComponent from './home.component';
-import {loginUser} from '../actions/api.actions';
+import FBLoginView from './facebookButtonView.component';
+import {loginUser,loginUserFacebook} from '../actions/api.actions';
+import {setDefaultLoginButton} from '../actions/user.action';
 let Icon = require('react-native-vector-icons/Ionicons');
 let moment = require('moment');
 import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
+let {FBLogin, FBLoginManager} = require('react-native-facebook-login');
 
 export default class LoginComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        user : null
+    };
+      console.log("States ",this.state);
+  }
+  componentWillUnmount(){
+    this.props.dispatch(setDefaultLoginButton());
+      console.log("Component will Mount ",this.state);
+  }
   render() {
+    var _this = this;
     return (
       <View style={styles.container}>        
         <View style={styles.logoWrap}>
@@ -44,6 +59,50 @@ export default class LoginComponent extends Component {
 						}
 					}}/>
         </View>
+        <View>
+          <FBLogin style={{ marginBottom: 10, }}
+                   ref={(fbLogin) => { this.fbLogin = fbLogin }}
+                   permissions={["email","user_friends"]}
+                   loginBehavior={FBLoginManager.LoginBehaviors.Native}
+                   onLogin={async (data) => {console.log("LOGGEDIN ",data);
+						let res = await this.props.dispatch(loginUserFacebook(data));
+						if (!res.err) {
+							this.props.goToRoute({
+								replace: true,
+								name: 'service',
+								component: HomeComponent,
+								title: 'Home'
+							});
+						}
+					}}
+                   onLogout={function(data){
+                      console.log("Logged out.",data);
+                      _this.setState({ user : null });
+                    }}
+                   onLoginFound={function(data){
+                      console.log("Existing login found.");
+                      console.log(data);
+                      _this.setState({ user : null });
+                   }}
+                   onLoginNotFound={function(){
+                      console.log("No user logged in.");
+                      _this.setState({ user : null });
+                   }}
+
+                  onError={function(data){
+                    console.log("ERROR");
+                    console.log(data);
+                  }}
+                  onCancel={function(){
+                    console.log("User cancelled.");
+                  }}
+                  onPermissionsMissing={function(data){
+                    console.log("Check permissions!");
+                    console.log(data);
+                  }}
+              />
+
+          </View>
       </View>
     )
   }

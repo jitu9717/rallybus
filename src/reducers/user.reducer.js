@@ -3,7 +3,9 @@ import * as actions from '../actions';
 const initialState = {
   isLoggedIn: false,
   loggingIn: false,
-  info: null
+  info: null,
+  null: null
+
 };
 
 const userReducer = function (state = initialState, action) {
@@ -16,6 +18,8 @@ const userReducer = function (state = initialState, action) {
       return Object.assign({}, state, { isLoggedIn: false, info: null });
     case actions.USER_LOGIN_FAILED:
       return Object.assign({}, state, { isLoggedIn: false, info: null, loggingIn: false });
+    case actions.DEFAULT_LOGIN_BUTTON:
+      return Object.assign({}, state, { user: null, isLoggedIn: false, info: null });
     default:
       return state;
   }
