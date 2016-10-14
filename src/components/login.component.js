@@ -61,6 +61,7 @@ export default class LoginComponent extends Component {
         </View>
         <View>
           <FBLogin style={{ marginBottom: 10, }}
+                   facebookText={'Login with Facebook'}
                    ref={(fbLogin) => { this.fbLogin = fbLogin }}
                    permissions={["email","user_friends"]}
                    loginBehavior={FBLoginManager.LoginBehaviors.Native}
